@@ -7,7 +7,7 @@
 
 ---
 
-## 📊 ER Diagram (ASCII)
+## 📊 ER Diagram 
 
 Patients ---> Appointments --- >Doctors
 | |                 ^                     
@@ -18,7 +18,8 @@ Patients ---> Appointments --- >Doctors
 |   v
 --- Bookings
 
-![alt text](image.png)
+![alt text](image-1.png)
+
 
 ## 📁 Project Structure
 
