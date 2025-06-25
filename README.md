@@ -9,18 +9,9 @@
 
 ## 📊 ER Diagram 
 
-Patients ---> Appointments --- >Doctors
-| |                 ^                     
-| v                 |                   
-| 
-| Visits --->     Vitals         
-|   |
-|   v
---- Bookings
-
 ![alt text](image-1.png)
 
-
+---
 ## 📁 Project Structure
 
 | Component          | Description                                     |
