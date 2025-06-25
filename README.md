@@ -59,6 +59,7 @@ SELECT * FROM Vitals_Alerts WHERE alert_type IN ('High BP', 'High Temperature');
 ```sql
 CALL sp_patient_visit_summary(10);
 ```
+
 ## ⚠️ Trigger Logic
 Fires when vitals are inserted
 If BP > 150 or Temp > 100 → logs to Vitals_Alerts
