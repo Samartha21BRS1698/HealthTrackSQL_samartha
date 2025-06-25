@@ -1,0 +1,39 @@
+name: MySQL Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  mysql-test:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: healthtracksql
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install MySQL client
+        run: sudo apt-get install -y mysql-client
+
+      - name: Run SQL Setup Scripts
+        run: |
+          mysql -h 127.0.0.1 -P 3306 -u root -proot healthtracksql < ./sql/create_tables.sql
+          mysql -h 127.0.0.1 -P 3306 -u root -proot healthtracksql < ./sql/insert_data.sql
+
+      - name: Run Test Query
+        run: |
+          mysql -h 127.0.0.1 -P 3306 -u root -proot -e "SELECT COUNT(*) FROM healthtracksql.Patients;"
